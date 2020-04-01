@@ -5,18 +5,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
+import androidx.databinding.DataBindingUtil
+import com.example.ooh_mdb.databinding.FragmentSearchBinding
+
 
 /**
  * A simple [Fragment] subclass.
  */
 class SearchFragment : Fragment() {
 
+    private lateinit var recyclerView: RecyclerView
+    private val movies = listOf(
+
+        Movie("Harry Potter and the Sorcerer's Stone", 2001),
+        Movie("Harry Potter and the Chamber of Secrets", 2002),
+        Movie("Harry Potter and the Prisoner of Azkaban", 2004),
+        Movie("Harry Potter and the Goblet of Fire", 2005),
+        Movie("Harry Potter and the Order of the Phoenix", 2007),
+        Movie("Harry Potter and the Half-Blood Prince", 2009),
+        Movie("Harry Potter and the Deathly Hallows: Part 1", 2010),
+        Movie("Harry Potter and the Deathly Hallows: Part 2", 2011)
+
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val binding: FragmentSearchBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_search, container, false)
+        recyclerView = binding.recyclerView
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // RecyclerView node initialized here
+        recyclerView.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+            adapter = ListAdapter(movies)
+        }
+    }
 }
