@@ -9,12 +9,10 @@ data class Movie(
     val imdbID: String?,
     val Type: String?,
     val Poster: String?,
+    val Runtime: String?,
+    val Genre: String?,
+    val Director: String?,
+    val Writer: String?,
+    val Actors: String?,
     val Plot: String?)
 
-/*
-"Title": "Harry Potter and the Deathly Hallows: Part 2",
-"Year": "2011",
-"imdbID": "tt1201607",
-"Type": "movie",
-"Poster": "https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg"
-*/

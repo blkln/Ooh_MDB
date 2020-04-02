@@ -30,9 +30,13 @@ class DetailsFragment : Fragment() {
             response?.isSuccessful.let {
                 val movie = response?.body()
 
-                title.text = movie?.Title
-                description.text = movie?.Plot
                 Picasso.get().load(movie?.Poster).into(poster)
+                title.text = movie?.Title
+                genre.text = "Genre: " + movie?.Genre.orEmpty()
+                director.text = "Director: " + movie?.Director.orEmpty()
+                writer.text = "Writer: " + movie?.Writer.orEmpty()
+                actors.text = "Actors: " + movie?.Actors.orEmpty()
+                description.text = movie?.Plot
 
             }
         }
