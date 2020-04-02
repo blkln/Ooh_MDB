@@ -1,6 +1,7 @@
 package com.example.ooh_mdb
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.ooh_mdb.databinding.FragmentSearchBinding
 
 
@@ -49,7 +51,10 @@ class SearchFragment : Fragment() {
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            adapter = ListAdapter(movies)
+            adapter = ListAdapter(movies) { view, position, type -> //  Navigate to selected item details
+                view.findNavController().navigate(R.id.action_searchFragment_to_detailsFragment)
+                Log.e("MyActivity", "Clicked on item  ${view.id} at position $position with type $type")
+            }
         }
     }
 }

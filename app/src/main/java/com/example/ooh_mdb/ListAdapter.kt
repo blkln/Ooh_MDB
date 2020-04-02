@@ -1,16 +1,20 @@
 package com.example.ooh_mdb
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ListAdapter(private val list: List<Movie>)
+class ListAdapter(private val list: List<Movie>,
+                  val itemClickListener: (View, Int, Int) -> Unit)
     : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return MovieViewHolder(inflater, parent)
+        val movieVH = MovieViewHolder(inflater, parent)
+        movieVH.onClick(itemClickListener)
+        return movieVH
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -39,4 +43,13 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 
 }
+
+//  Selected item recognition extension
+fun <T : RecyclerView.ViewHolder> T.onClick(event: (view: View, position: Int, type: Int) -> Unit): T {
+    itemView.setOnClickListener {
+        event.invoke(it, getAdapterPosition(), getItemViewType())
+    }
+    return this
+}
+
 
