@@ -16,7 +16,6 @@ import com.example.ooh_mdb.databinding.FragmentSearchBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.example.ooh_mdb.MovieResult
 
 
 /**
@@ -26,7 +25,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    private val repoRetriever = MovieFetcher()
+    private val movieFetcher = MovieFetcher()
 
     private val callback = object : Callback<MovieResult> {
         override fun onFailure(call: Call<MovieResult>?, t: Throwable?) {
@@ -80,7 +79,7 @@ class SearchFragment : Fragment() {
         }
 
         if (context!!.isConnectedToNetwork()) {
-            repoRetriever.getMovies(callback)
+            movieFetcher.getMovies(callback)
         } else {
             AlertDialog.Builder(context).setTitle("No Internet Connection")
                 .setMessage("Please check your internet connection and try again")

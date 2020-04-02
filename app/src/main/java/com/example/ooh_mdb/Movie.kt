@@ -8,8 +8,8 @@ data class Movie(
     val Year: String?,
     val imdbID: String?,
     val Type: String?,
-    val Poster: String?)
-
+    val Poster: String?,
+    val Plot: String?)
 
 /*
 "Title": "Harry Potter and the Deathly Hallows: Part 2",
