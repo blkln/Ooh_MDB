@@ -19,8 +19,8 @@ class MovieFetcher {
         service = retrofit.create(OMDbService::class.java) //3
     }
 
-    fun getMovies(callback: Callback<MovieResult>) { //4
-        service.fetchMovies().enqueue(callback)
+    fun getMovies(name: String, callback: Callback<MovieResult>) { //4
+        service.fetchMovies(name).enqueue(callback)
     }
 
     fun getMovieDetails(imdbID: String, callback: Callback<Movie>) {

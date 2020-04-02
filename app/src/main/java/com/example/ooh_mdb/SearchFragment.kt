@@ -7,13 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.ooh_mdb.databinding.FragmentSearchBinding
+import kotlinx.android.synthetic.main.fragment_search.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,8 +24,6 @@ import retrofit2.Response
  * A simple [Fragment] subclass.
  */
 class SearchFragment : Fragment() {
-
-    private lateinit var recyclerView: RecyclerView
 
     private val movieFetcher = MovieFetcher()
 
@@ -39,7 +38,7 @@ class SearchFragment : Fragment() {
 
                 val fetchedMovies = resultList.Search
 
-                recyclerView.apply {
+                recycler_view.apply {
                     // set a LinearLayoutManager to handle Android
                     // RecyclerView behavior
                     layoutManager = LinearLayoutManager(activity)
@@ -62,14 +61,14 @@ class SearchFragment : Fragment() {
         val binding: FragmentSearchBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_search, container, false)
         //TODO: Should .apply here or assign to property 'recyclerView'?
-        recyclerView = binding.recyclerView
+//        recyclerView = binding.recyclerView
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // RecyclerView node initialized here
-        recyclerView.apply {
+        recycler_view.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
@@ -80,13 +79,33 @@ class SearchFragment : Fragment() {
 //            }
         }
 
-        if (context!!.isConnectedToNetwork()) {
-            movieFetcher.getMovies(callback)
-        } else {
-            AlertDialog.Builder(context).setTitle("No Internet Connection")
-                .setMessage("Please check your internet connection and try again")
-                .setPositiveButton(android.R.string.ok) { _, _ -> }
-                .setIcon(android.R.drawable.ic_dialog_alert).show()
+        search_field.apply {
+            this.isActivated = true
+            this.queryHint = "Enter movie name"
+            this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (query != null && query.length > 3) {
+                        movieFetcher.getMovies(query, callback)
+                    }
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText != null && newText.length > 3) {
+                        movieFetcher.getMovies(newText, callback)
+                    }
+                    return false
+                }
+            })
         }
+
+//        if (context!!.isConnectedToNetwork()) {
+//            movieFetcher.getMovies("matrix", callback)
+//        } else {
+//            AlertDialog.Builder(context).setTitle("No Internet Connection")
+//                .setMessage("Please check your internet connection and try again")
+//                .setPositiveButton(android.R.string.ok) { _, _ -> }
+//                .setIcon(android.R.drawable.ic_dialog_alert).show()
+//        }
     }
 }
