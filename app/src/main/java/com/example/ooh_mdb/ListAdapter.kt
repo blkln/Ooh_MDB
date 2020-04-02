@@ -26,6 +26,7 @@ class ListAdapter(private val list: List<Movie>,
 
 }
 
+//TODO: Should leave here or move to separate class?
 class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.list_item, parent, false)) {
     private var mTitleView: TextView? = null

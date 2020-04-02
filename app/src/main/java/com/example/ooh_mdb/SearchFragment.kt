@@ -39,6 +39,7 @@ class SearchFragment : Fragment() {
     ): View? {
         val binding: FragmentSearchBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_search, container, false)
+        //TODO: Should .apply here or assign to property 'recyclerView'?
         recyclerView = binding.recyclerView
         return binding.root
     }
