@@ -3,8 +3,11 @@ package com.example.ooh_mdb
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+
 
 class ListAdapter(private val list: List<Movie>,
                   val itemClickListener: (View, Int, Int) -> Unit)
@@ -31,16 +34,20 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.list_item, parent, false)) {
     private var mTitleView: TextView? = null
     private var mYearView: TextView? = null
+    private var mIconView: ImageView? = null
 
 
     init {
         mTitleView = itemView.findViewById(R.id.list_title)
         mYearView = itemView.findViewById(R.id.list_description)
+        mIconView = itemView.findViewById(R.id.list_icon)
     }
 
     fun bind(movie: Movie) {
-        mTitleView?.text = movie.title
-        mYearView?.text = movie.year.toString()
+        mTitleView?.text = movie.Title.orEmpty()
+        mYearView?.text = movie.Year.orEmpty()
+        Picasso.get().load(movie.Poster).into(mIconView)
+
     }
 
 }

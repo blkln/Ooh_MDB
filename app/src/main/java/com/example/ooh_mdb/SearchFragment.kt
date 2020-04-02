@@ -1,5 +1,6 @@
 package com.example.ooh_mdb
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.ooh_mdb.databinding.FragmentSearchBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import com.example.ooh_mdb.MovieResult
 
 
 /**
@@ -20,18 +25,34 @@ import com.example.ooh_mdb.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private val movies = listOf(
 
-        Movie("Harry Potter and the Sorcerer's Stone", 2001),
-        Movie("Harry Potter and the Chamber of Secrets", 2002),
-        Movie("Harry Potter and the Prisoner of Azkaban", 2004),
-        Movie("Harry Potter and the Goblet of Fire", 2005),
-        Movie("Harry Potter and the Order of the Phoenix", 2007),
-        Movie("Harry Potter and the Half-Blood Prince", 2009),
-        Movie("Harry Potter and the Deathly Hallows: Part 1", 2010),
-        Movie("Harry Potter and the Deathly Hallows: Part 2", 2011)
+    private val repoRetriever = MovieFetcher()
 
-    )
+    private val callback = object : Callback<MovieResult> {
+        override fun onFailure(call: Call<MovieResult>?, t: Throwable?) {
+            Log.e("SearchFragment", "Problem calling OMDb API", t)
+        }
+
+        override fun onResponse(call: Call<MovieResult>?, response: Response<MovieResult>?) {
+            response?.isSuccessful.let {
+                val resultList = MovieResult(response?.body()?.Search ?: emptyList())
+
+                val fetchedMovies = resultList.Search
+
+                recyclerView.apply {
+                    // set a LinearLayoutManager to handle Android
+                    // RecyclerView behavior
+                    layoutManager = LinearLayoutManager(activity)
+                    // set the custom adapter to the RecyclerView
+                    adapter = ListAdapter(fetchedMovies) { view, position, type -> //  Navigate to selected item details
+                        view.findNavController().navigate(R.id.action_searchFragment_to_detailsFragment)
+                        Log.e("MyActivity", "Clicked on item  ${view.id} at position $position with type $type")
+                    }
+                }
+            }
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,10 +73,19 @@ class SearchFragment : Fragment() {
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            adapter = ListAdapter(movies) { view, position, type -> //  Navigate to selected item details
-                view.findNavController().navigate(R.id.action_searchFragment_to_detailsFragment)
-                Log.e("MyActivity", "Clicked on item  ${view.id} at position $position with type $type")
-            }
+//            adapter = ListAdapter(movies) { view, position, type -> //  Navigate to selected item details
+//                view.findNavController().navigate(R.id.action_searchFragment_to_detailsFragment)
+//                Log.e("MyActivity", "Clicked on item  ${view.id} at position $position with type $type")
+//            }
+        }
+
+        if (context!!.isConnectedToNetwork()) {
+            repoRetriever.getMovies(callback)
+        } else {
+            AlertDialog.Builder(context).setTitle("No Internet Connection")
+                .setMessage("Please check your internet connection and try again")
+                .setPositiveButton(android.R.string.ok) { _, _ -> }
+                .setIcon(android.R.drawable.ic_dialog_alert).show()
         }
     }
 }
