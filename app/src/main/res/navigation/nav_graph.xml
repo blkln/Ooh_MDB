@@ -17,5 +17,10 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.ooh_mdb.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details"/>
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="imdbID"
+            app:argType="string"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

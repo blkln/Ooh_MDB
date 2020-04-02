@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -44,7 +45,8 @@ class SearchFragment : Fragment() {
                     layoutManager = LinearLayoutManager(activity)
                     // set the custom adapter to the RecyclerView
                     adapter = ListAdapter(fetchedMovies) { view, position, type -> //  Navigate to selected item details
-                        view.findNavController().navigate(R.id.action_searchFragment_to_detailsFragment)
+                        var bundle = bundleOf("imdbID" to fetchedMovies[position].imdbID)
+                        view.findNavController().navigate(R.id.action_searchFragment_to_detailsFragment, bundle)
                         Log.e("MyActivity", "Clicked on item  ${view.id} at position $position with type $type")
                     }
                 }

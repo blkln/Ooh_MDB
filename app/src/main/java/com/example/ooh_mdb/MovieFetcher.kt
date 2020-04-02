@@ -23,8 +23,8 @@ class MovieFetcher {
         service.fetchMovies().enqueue(callback)
     }
 
-    fun getMovieDetails(callback: Callback<Movie>) {
-        service.getMovieDetails().enqueue(callback)
+    fun getMovieDetails(imdbID: String, callback: Callback<Movie>) {
+        service.getMovieDetails(imdbID).enqueue(callback)
     }
 
 }

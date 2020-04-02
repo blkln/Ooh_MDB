@@ -49,6 +49,9 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieFetcher.getMovieDetails(callback)
+        val imdbID = arguments?.getString("imdbID")
+        if (imdbID != null) {
+            movieFetcher.getMovieDetails(imdbID, callback)
+        }
     }
 }
