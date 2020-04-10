@@ -10,7 +10,7 @@ android {
     dataBinding {
         enabled = true
     }
-    
+
     defaultConfig {
         applicationId "com.example.ooh_mdb"
         minSdkVersion 19
@@ -26,6 +26,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -45,8 +54,15 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    // Lifecycles
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //  Modules
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':interactors')
 }

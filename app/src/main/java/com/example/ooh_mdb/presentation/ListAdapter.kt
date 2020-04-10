@@ -1,17 +1,25 @@
-package com.example.ooh_mdb
+package com.example.ooh_mdb.presentation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.Movie
+import com.example.ooh_mdb.R
 import com.squareup.picasso.Picasso
+import kotlin.properties.Delegates
 
 
-class ListAdapter(private val list: List<Movie>,
-                  val itemClickListener: (View, Int, Int) -> Unit)
+class ListAdapter(//private val moviesList: List<Movie>,
+                  val itemClickListener: (View, Int) -> Unit
+//    val itemClickListener: OnItemClickListener
+)
     : RecyclerView.Adapter<MovieViewHolder>() {
+
+    var list: List<Movie> by Delegates.observable(emptyList()) { _, _, _ -> notifyDataSetChanged() }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -21,11 +29,19 @@ class ListAdapter(private val list: List<Movie>,
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie: Movie = list[position]
+        val movie: com.example.domain.Movie = list[position]
         holder.bind(movie)
+//        holder.bind(movie, itemClickListener)
     }
 
     override fun getItemCount(): Int = list.size
+
+    fun update(newMovies: List<Movie>) {
+        list = newMovies
+
+        notifyDataSetChanged()
+    }
+
 
 }
 
@@ -43,21 +59,33 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         mIconView = itemView.findViewById(R.id.list_icon)
     }
 
-    fun bind(movie: Movie) {
+    fun bind(
+        movie: Movie//,
+//        itemClickListener: OnItemClickListener
+    ) {
+
         mTitleView?.text = movie.Title.orEmpty()
         mYearView?.text = movie.Year.orEmpty()
         Picasso.get().load(movie.Poster).into(mIconView)
+
+//        itemView.setOnClickListener {
+//            itemClickListener.onItemClicked(movie)
+//        }
 
     }
 
 }
 
 //  Selected item recognition extension
-fun <T : RecyclerView.ViewHolder> T.onClick(event: (view: View, position: Int, type: Int) -> Unit): T {
+fun <T : RecyclerView.ViewHolder> T.onClick(event: (view: View, position: Int) -> Unit): T {
     itemView.setOnClickListener {
-        event.invoke(it, getAdapterPosition(), getItemViewType())
+        event.invoke(it, getAdapterPosition())
     }
     return this
+}
+
+interface OnItemClickListener {
+    fun onItemClicked(movie: Movie)
 }
 
 

@@ -2,7 +2,16 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".DetailsFragment">
+    tools:context=".presentation.DetailsFragment">
+
+    <data>
+
+        <variable
+            name="detailsViewModel"
+            type="com.example.ooh_mdb.presentation.DetailsViewModel" />
+
+    </data>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +40,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
 
-            android:text=""
+            android:text="@{detailsViewModel.movie.title}"
             android:textSize="22sp"
             android:textStyle="bold"
             />
@@ -46,7 +55,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
 
-            android:text=""
+            android:text="@{@string/genre(detailsViewModel.movie.genre)}"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -60,7 +69,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
 
-            android:text=""
+            android:text="@{@string/director(detailsViewModel.movie.director)}"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -74,7 +83,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
 
-            android:text=""
+            android:text="@{@string/writer(detailsViewModel.movie.writer)}"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -88,7 +97,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
 
-            android:text=""
+            android:text="@{@string/actors(detailsViewModel.movie.actors)}"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -102,7 +111,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
 
-            android:text=""
+            android:text="@{detailsViewModel.movie.plot}"
             android:textSize="18sp"
             android:textStyle="normal"
             />

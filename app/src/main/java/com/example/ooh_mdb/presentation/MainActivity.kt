@@ -1,7 +1,8 @@
-package com.example.ooh_mdb
+package com.example.ooh_mdb.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.ooh_mdb.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,5 +11,3 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
-
-//TODO: How to organize files in project

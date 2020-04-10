@@ -1,4 +1,4 @@
-package com.example.ooh_mdb
+package com.example.domain
 
 //TODO: didn't compile until 'item' changed to 'search'
 data class MovieResult(val Search: List<Movie>)

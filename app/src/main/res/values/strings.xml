@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">Ooh_MDB</string>
+    <string name="app_name">Ooh_MDb</string>
     <string name="api_key">c07625ac</string>
 
     <string name="poster">Poster</string>
+
+    <string name="genre">Genre: %s</string>
+    <string name="director">Director: %s</string>
+    <string name="writer">Writer: %s</string>
+    <string name="actors">Actors: %s</string>
+
 </resources>
