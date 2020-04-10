@@ -1,4 +1,4 @@
-package com.example.ooh_mdb.presentation
+package com.example.ooh_mdb.presentation.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,11 +21,22 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_details, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_details,
+            container,
+            false
+        )
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // Get the viewModel
         viewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
@@ -39,19 +50,14 @@ class DetailsFragment : Fragment() {
         // Observing viewModel to load poster
         viewModel.movie.observe(viewLifecycleOwner, Observer { movie ->
 
-                movie.Poster.let {
-                    if (!movie.Poster!!.isEmpty()) {
-                        loadPoster(movie.Poster!!)
-                    }
+            movie.Poster.let {
+                if (!movie.Poster!!.isEmpty()) {
+                    loadPoster(movie.Poster!!)
                 }
+            }
 
         })
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val imdbID = arguments?.getString("imdbID")
         if (imdbID != null && !imdbID.isEmpty()) {
             viewModel.loadMovieDetails(imdbID)

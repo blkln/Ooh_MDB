@@ -1,4 +1,4 @@
-package com.example.ooh_mdb.presentation
+package com.example.ooh_mdb.presentation.search
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.Movie
 import com.example.ooh_mdb.R
+import com.example.ooh_mdb.presentation.onClick
 import com.squareup.picasso.Picasso
 
 
@@ -18,7 +19,10 @@ class ListAdapter(private val itemClickListener: (View, Int) -> Unit)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val movieVH = MovieViewHolder(inflater, parent)
+        val movieVH = MovieViewHolder(
+            inflater,
+            parent
+        )
         movieVH.onClick(itemClickListener)
         return movieVH
     }

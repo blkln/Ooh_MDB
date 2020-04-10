@@ -1,4 +1,4 @@
-package com.example.ooh_mdb.presentation
+package com.example.ooh_mdb.presentation.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +16,21 @@ class DetailsViewModel: ViewModel() {
     private val movieRepository = MoviesRepository(movieFetcher)
     private val getMovieDetails: GetMovieDetails = GetMovieDetails(movieRepository)
 
-    private val _movie = MutableLiveData<Movie>()
+    private val _movie = MutableLiveData<Movie>(
+        Movie(
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+        )
+    )
     val movie: LiveData<Movie>
     get() = _movie
 

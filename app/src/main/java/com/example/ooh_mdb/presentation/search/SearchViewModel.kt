@@ -1,4 +1,4 @@
-package com.example.ooh_mdb.presentation
+package com.example.ooh_mdb.presentation.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,6 +1,5 @@
 package com.example.domain
 
-//TODO: didn't compile until 'item' changed to 'search'
 data class MovieResult(val Search: List<Movie>)
 
 data class Movie(

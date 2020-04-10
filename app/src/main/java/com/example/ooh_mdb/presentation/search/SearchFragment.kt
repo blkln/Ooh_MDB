@@ -1,4 +1,4 @@
-package com.example.ooh_mdb.presentation
+package com.example.ooh_mdb.presentation.search
 
 import android.os.Bundle
 import android.util.Log
@@ -10,19 +10,12 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.data.MoviesRepository
 import com.example.domain.Movie
-import com.example.interactors.GetMovies
 import com.example.ooh_mdb.R
 import com.example.ooh_mdb.databinding.FragmentSearchBinding
-import com.example.ooh_mdb.framework.MovieFetcher
-import kotlinx.android.synthetic.main.fragment_search.*
 
 
 /**
@@ -32,26 +25,41 @@ class SearchFragment : Fragment() {
 
     private lateinit var viewModel: SearchViewModel
     private lateinit var binding: FragmentSearchBinding
-    private val moviesAdapter: ListAdapter = ListAdapter() { view, position -> //  Navigate to selected item details
-        val movies : List<Movie> = viewModel.movies.value ?: emptyList()
-        val bundle = bundleOf("imdbID" to movies[position].imdbID)
-        view.findNavController().navigate(
-            R.id.action_searchFragment_to_detailsFragment,
-            bundle
-        )
-        Log.e(
-            "MyActivity",
-            "Clicked on item  ${view.id} at position $position"
-        )
-    }
+    private lateinit var moviesAdapter: ListAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_search, container, false)
+            R.layout.fragment_search,
+            container,
+            false
+        )
+
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        moviesAdapter =
+        ListAdapter() { view, position -> //  Navigate to selected item details
+            val movies: List<Movie> = viewModel.movies.value ?: emptyList()
+            val bundle = bundleOf("imdbID" to movies[position].imdbID)
+            view.findNavController().navigate(
+                R.id.action_searchFragment_to_detailsFragment,
+                bundle
+            )
+            Log.e(
+                "MyActivity",
+                "Clicked on item  ${view.id} at position $position"
+            )
+        }
 
         // Get the viewModel
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
@@ -62,12 +70,6 @@ class SearchFragment : Fragment() {
         // Observing viewModel to update adapter
         viewModel.movies.observe(viewLifecycleOwner, Observer { moviesAdapter.update(it ?: emptyList()) })
 
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         // RecyclerView node initialized here
         binding.recyclerView.apply {
