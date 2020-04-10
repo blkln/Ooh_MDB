@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.MoviesRepository
 import com.example.domain.Movie
 import com.example.interactors.GetMovies
-import com.example.ooh_mdb.framework.MovieFetcher
+import com.example.data.MovieFetcher
 import kotlinx.coroutines.launch
 
 class SearchViewModel: ViewModel() {

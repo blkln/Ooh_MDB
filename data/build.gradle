@@ -7,6 +7,15 @@ dependencies {
 
     //  Modules
     implementation project(':domain')
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+
+    //Okhttp3
+    implementation "com.squareup.okhttp3:okhttp:4.5.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
+
 }
 
 sourceCompatibility = "7"

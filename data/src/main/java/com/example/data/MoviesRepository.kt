@@ -2,7 +2,7 @@ package com.example.data
 
 import com.example.domain.Movie
 
-class MoviesRepository(private val movieSource: MovieSource) {
+class MoviesRepository(private val movieSource: MoviesDataSource) {
 
     suspend fun getMovies(name: String) : List<Movie> {
         return movieSource.getMovies(name)
@@ -14,7 +14,7 @@ class MoviesRepository(private val movieSource: MovieSource) {
 
 }
 
-interface MovieSource {
+interface MoviesDataSource {
 
     suspend fun getMovies(name: String): List<Movie>
     suspend fun getMovieDetails(id: String): Movie
