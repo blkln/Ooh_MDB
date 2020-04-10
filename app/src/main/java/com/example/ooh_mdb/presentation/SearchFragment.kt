@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 /**
  * A search fragment.
  */
-class SearchFragment : Fragment(), OnItemClickListener {
+class SearchFragment : Fragment() {
 
     private lateinit var viewModel: SearchViewModel
     private lateinit var binding: FragmentSearchBinding
@@ -100,15 +100,4 @@ class SearchFragment : Fragment(), OnItemClickListener {
 
     }
 
-    override fun onItemClicked(movie: Movie) {
-        var bundle = bundleOf("imdbID" to movie.imdbID)
-        this.findNavController().navigate(
-            R.id.action_searchFragment_to_detailsFragment,
-            bundle
-        )
-        Log.e(
-            "MyActivity",
-            "Clicked on item  ${movie.imdbID}"
-        )
-    }
 }

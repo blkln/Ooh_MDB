@@ -59,7 +59,12 @@ class DetailsFragment : Fragment() {
     }
 
     fun loadPoster(uri: String) {
-        Picasso.get().load(uri).into(binding.poster)
+
+        Picasso.get()
+            .load(uri)
+            .error(R.drawable.reel)
+            .placeholder(R.drawable.reel)
+            .into(binding.poster)
     }
 
 }

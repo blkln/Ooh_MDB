@@ -24,9 +24,8 @@ class ListAdapter(private val itemClickListener: (View, Int) -> Unit)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie: com.example.domain.Movie = list[position]
+        val movie: Movie = list[position]
         holder.bind(movie)
-//        holder.bind(movie, itemClickListener)
     }
 
     override fun getItemCount(): Int = list.size
@@ -55,13 +54,13 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bind( movie: Movie) {
 
-        mTitleView?.text = movie.Title.orEmpty()
-        mYearView?.text = movie.Year.orEmpty()
-        Picasso.get().load(movie.Poster).into(mIconView)
-
-//        itemView.setOnClickListener {
-//            itemClickListener.onItemClicked(movie)
-//        }
+        titleView?.text = movie.Title.orEmpty()
+        yearView?.text = movie.Year.orEmpty()
+        Picasso.get()
+            .load(movie.Poster)
+            .error(R.drawable.reel)
+            .placeholder(R.drawable.reel)
+            .into(posterView)
 
     }
 

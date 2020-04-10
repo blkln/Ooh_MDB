@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.DetailsFragment">
 
@@ -28,7 +29,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:contentDescription="@string/poster" />
+            android:contentDescription="@string/poster"
+            app:srcCompat="@drawable/reel" />
 
         <TextView
             android:id="@+id/title"
@@ -45,76 +47,86 @@
             android:textStyle="bold"
             />
 
-        <TextView
-            android:id="@+id/genre"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="match_parent">
 
-            android:text="@{@string/genre(detailsViewModel.movie.genre)}"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/director"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+                <TextView
+                    android:id="@+id/genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
 
-            android:text="@{@string/director(detailsViewModel.movie.director)}"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+                    android:text="@{@string/genre(detailsViewModel.movie.genre)}"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/writer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+                <TextView
+                    android:id="@+id/director"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
 
-            android:text="@{@string/writer(detailsViewModel.movie.writer)}"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+                    android:text="@{@string/director(detailsViewModel.movie.director)}"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/actors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+                <TextView
+                    android:id="@+id/actors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
 
-            android:text="@{@string/actors(detailsViewModel.movie.actors)}"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+                    android:text="@{@string/actors(detailsViewModel.movie.actors)}"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/writer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+                    android:text="@{@string/writer(detailsViewModel.movie.writer)}"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            android:text="@{detailsViewModel.movie.plot}"
-            android:textSize="18sp"
-            android:textStyle="normal"
-            />
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:text="@{detailsViewModel.movie.plot}"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </ScrollView>
 
 
     </LinearLayout>
