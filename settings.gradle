@@ -1,5 +1,4 @@
 rootProject.name='Ooh_MDB'
 include ':app'
-include ':interactors'
 include ':data'
 include ':domain'

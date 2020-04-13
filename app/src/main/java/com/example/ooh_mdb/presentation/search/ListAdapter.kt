@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.Movie
+import com.example.domain.model.Movie
 import com.example.ooh_mdb.R
 import com.example.ooh_mdb.presentation.onClick
 import com.squareup.picasso.Picasso

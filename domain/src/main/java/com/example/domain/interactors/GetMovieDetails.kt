@@ -1,7 +1,7 @@
-package com.example.interactors
+package com.example.domain.interactors
 
-import com.example.data.MoviesRepository
-import com.example.domain.Movie
+import com.example.domain.MoviesRepository
+import com.example.domain.model.Movie
 
 class GetMovieDetails(private val moviesRepository: MoviesRepository) {
 

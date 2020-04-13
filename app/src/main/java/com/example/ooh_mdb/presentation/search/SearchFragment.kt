@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.domain.Movie
+import com.example.domain.model.Movie
 import com.example.ooh_mdb.R
 import com.example.ooh_mdb.databinding.FragmentSearchBinding
 

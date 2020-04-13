@@ -1,6 +1,6 @@
 package com.example.data.model
 
-import com.example.domain.Movie
+import com.example.domain.model.Movie
 import com.squareup.moshi.Json
 
 data class MovieResult(val Search: List<MovieEntity>)
@@ -29,7 +29,20 @@ data class MovieEntity (
     val plot: String
 )
 
-fun MovieEntity.mapToDomain(): Movie = Movie(title, year, imdbID, type, poster, runtime, genre, director, writer, actors, plot)
+fun MovieEntity.mapToDomain(): Movie =
+    Movie(
+        title,
+        year,
+        imdbID,
+        type,
+        poster,
+        runtime,
+        genre,
+        director,
+        writer,
+        actors,
+        plot
+    )
 
 fun List<MovieEntity>.mapToDomain(): List<Movie> = map { it.mapToDomain() }
 

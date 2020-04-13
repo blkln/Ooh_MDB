@@ -2,7 +2,7 @@ package com.example.data
 
 import com.example.data.model.mapToDomain
 import com.example.data.service.ServiceProvider
-import com.example.domain.Movie
+import com.example.domain.model.Movie
 import com.example.data.MoviesDataSource as MoviesDataSource
 
 class MovieFetcher: MoviesDataSource {
