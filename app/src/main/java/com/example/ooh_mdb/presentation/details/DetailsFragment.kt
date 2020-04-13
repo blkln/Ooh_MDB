@@ -50,9 +50,9 @@ class DetailsFragment : Fragment() {
         // Observing viewModel to load poster
         viewModel.movie.observe(viewLifecycleOwner, Observer { movie ->
 
-            movie.Poster.let {
-                if (!movie.Poster!!.isEmpty()) {
-                    loadPoster(movie.Poster!!)
+            movie.poster.let {
+                if (!movie.poster.isEmpty()) {
+                    loadPoster(movie.poster)
                 }
             }
 

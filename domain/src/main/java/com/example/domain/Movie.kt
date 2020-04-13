@@ -1,17 +1,14 @@
 package com.example.domain
 
-data class MovieResult(val Search: List<Movie>)
-
 data class Movie(
-    val Title: String?,
-    val Year: String?,
-    val imdbID: String?,
-    val Type: String?,
-    val Poster: String?,
-    val Runtime: String?,
-    val Genre: String?,
-    val Director: String?,
-    val Writer: String?,
-    val Actors: String?,
-    val Plot: String?)
-
+    val title: String,
+    val year: String,
+    val imdbID: String,
+    val type: String,
+    val poster: String,
+    val runtime: String?,
+    val genre: String?,
+    val director: String?,
+    val writer: String?,
+    val actors: String?,
+    val plot: String?)

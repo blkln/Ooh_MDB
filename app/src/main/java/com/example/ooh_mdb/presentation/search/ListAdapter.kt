@@ -58,10 +58,10 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bind( movie: Movie) {
 
-        titleView?.text = movie.Title.orEmpty()
-        yearView?.text = movie.Year.orEmpty()
+        titleView?.text = movie.title
+        yearView?.text = movie.year
         Picasso.get()
-            .load(movie.Poster)
+            .load(movie.poster)
             .error(R.drawable.reel)
             .placeholder(R.drawable.reel)
             .into(posterView)
