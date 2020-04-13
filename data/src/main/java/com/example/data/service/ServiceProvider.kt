@@ -1,10 +1,10 @@
 package com.example.data.service
 
+import com.example.data.Constants
+
 object ServiceProvider {
 
-    const val OMDB_BASE_URL = "http://www.omdbapi.com/"
-
-    val ombdService = RequestProvider.retrofit(OMDB_BASE_URL)
+    val ombdService = RequestProvider.retrofit(Constants.OMDB_BASE_URL)
         .create(OMDbApi::class.java)
 
 }

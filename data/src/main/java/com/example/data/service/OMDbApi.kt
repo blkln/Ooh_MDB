@@ -9,10 +9,10 @@ import retrofit2.http.Query
 
 interface OMDbApi {
 
-    @GET("?apikey=c07625ac")
+    @GET(".")
     suspend fun getMovies(@Query("s") name: String): MovieResult
 
-    @GET("?apikey=c07625ac")
+    @GET(".")
     suspend fun getMovieDetails(@Query("i") imdbID: String): MovieEntity
 
 }
