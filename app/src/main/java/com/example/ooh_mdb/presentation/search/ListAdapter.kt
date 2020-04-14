@@ -11,11 +11,10 @@ import com.example.ooh_mdb.R
 import com.example.ooh_mdb.presentation.onClick
 import com.squareup.picasso.Picasso
 
-
 class ListAdapter(private val itemClickListener: (View, Int) -> Unit)
     : RecyclerView.Adapter<MovieViewHolder>() {
 
-    var list: List<Movie> = emptyList()
+    private val list: MutableList<Movie> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -35,11 +34,10 @@ class ListAdapter(private val itemClickListener: (View, Int) -> Unit)
     override fun getItemCount(): Int = list.size
 
     fun update(newMovies: List<Movie>) {
-        list = newMovies
-
+        list.clear()
+        list.addAll(newMovies)
         notifyDataSetChanged()
     }
-
 
 }
 
@@ -49,7 +47,6 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private var yearView: TextView?
     private var posterView: ImageView?
 
-
     init {
         titleView = itemView.findViewById(R.id.listItemTitle)
         yearView = itemView.findViewById(R.id.listItemYear)
@@ -57,7 +54,6 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 
     fun bind( movie: Movie) {
-
         titleView?.text = movie.title
         yearView?.text = movie.year
         Picasso.get()
@@ -65,7 +61,6 @@ class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             .error(R.drawable.reel)
             .placeholder(R.drawable.reel)
             .into(posterView)
-
     }
 
 }
