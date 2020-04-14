@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
-object RequestProvider {
+class RetrofitProvider: ApiServiceProvider {
 
     private val authInterceptor = AuthorizationInterceptor()
 
@@ -22,11 +22,15 @@ object RequestProvider {
         .addInterceptor(loggingInterceptor)
         .build()
 
-    fun retrofit(baseUrl: String): Retrofit = Retrofit.Builder()
+    fun retrofit(): Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl(baseUrl)
+        .baseUrl(Constants.OMDB_BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
+
+    override fun create(): OMDbApi {
+        return this.retrofit().create(OMDbApi::class.java)
+    }
 
 }
 

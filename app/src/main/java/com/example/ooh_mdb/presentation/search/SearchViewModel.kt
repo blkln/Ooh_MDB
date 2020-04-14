@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.MovieFetcher
 import com.example.data.MoviesRepositoryImpl
+import com.example.data.service.RetrofitProvider
 import com.example.domain.model.Movie
 import com.example.domain.interactors.GetMovies
 import kotlinx.coroutines.launch
 
 class SearchViewModel: ViewModel() {
 
-    private val movieFetcher = MovieFetcher()
+    private val serviceProvider = RetrofitProvider().create()
+    private val movieFetcher = MovieFetcher(serviceProvider)
     private val movieRepository = MoviesRepositoryImpl(movieFetcher)
     private val getMovies: GetMovies = GetMovies(movieRepository)
 
