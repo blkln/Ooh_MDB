@@ -10,7 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.model.Movie
@@ -62,7 +62,7 @@ class SearchFragment : Fragment() {
         }
 
         // Get the viewModel
-        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
         // Specify the current activity as the lifecycle owner of the binding.
         binding.setLifecycleOwner(this)

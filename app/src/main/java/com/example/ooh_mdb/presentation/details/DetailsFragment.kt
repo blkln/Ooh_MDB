@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ooh_mdb.R
 import com.example.ooh_mdb.databinding.FragmentDetailsBinding
 import com.squareup.picasso.Picasso
@@ -39,7 +39,7 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Get the viewModel
-        viewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
 
         // Set the viewModel for dataBinding
         binding.detailsViewModel = viewModel
