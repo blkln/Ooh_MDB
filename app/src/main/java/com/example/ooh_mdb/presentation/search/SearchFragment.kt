@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -70,6 +71,9 @@ class SearchFragment : Fragment() {
         // Observing viewModel to update adapter
         viewModel.movies.observe(viewLifecycleOwner, Observer { moviesAdapter.update(it ?: emptyList()) })
 
+        viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+        })
 
         // RecyclerView node initialized here
         binding.recyclerView.apply {

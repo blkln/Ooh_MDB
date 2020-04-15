@@ -16,17 +16,20 @@ data class MovieEntity (
     @field:Json(name = "Poster")
     val poster: String,
     @field:Json(name = "Runtime")
-    val runtime: String,
+    val runtime: String?,
     @field:Json(name = "Genre")
-    val genre: String,
+    val genre: String?,
     @field:Json(name = "Director")
-    val director: String,
+    val director: String?,
     @field:Json(name = "Writer")
-    val writer: String,
+    val writer: String?,
     @field:Json(name = "Actors")
-    val actors: String,
+    val actors: String?,
     @field:Json(name = "Plot")
-    val plot: String
+    val plot: String?,
+    @field:Json(name = "Error")
+    val error: String?
+
 )
 
 fun MovieEntity.mapToDomain(): Movie =
