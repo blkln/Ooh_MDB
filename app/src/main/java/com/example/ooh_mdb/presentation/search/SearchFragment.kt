@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.data.Constants
 import com.example.domain.model.Movie
 import com.example.ooh_mdb.R
 import com.example.ooh_mdb.databinding.FragmentSearchBinding
@@ -51,7 +52,7 @@ class SearchFragment : Fragment() {
         moviesAdapter =
         ListAdapter() { view, position -> //  Navigate to selected item details
             val movies: List<Movie> = viewModel.movies.value ?: emptyList()
-            val bundle = bundleOf("imdbID" to movies[position].imdbID)
+            val bundle = bundleOf(Constants.BUNDLE_MOVIE_ID_KEY to movies[position].imdbID)
             view.findNavController().navigate(
                 R.id.action_searchFragment_to_detailsFragment,
                 bundle
@@ -72,7 +73,8 @@ class SearchFragment : Fragment() {
         viewModel.movies.observe(viewLifecycleOwner, Observer { moviesAdapter.update(it ?: emptyList()) })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+            val stringId = resources.getIdentifier(it, "string", activity?.packageName)
+            Toast.makeText(activity,  getString(stringId), Toast.LENGTH_SHORT).show()
         })
 
         // RecyclerView node initialized here
@@ -86,17 +88,17 @@ class SearchFragment : Fragment() {
 
         binding.searchField.apply {
             this.isActivated = true
-            this.queryHint = "Enter movie name"
+            this.queryHint = getString(R.string.search_hint)
             this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    if (query != null && query.length > 3) {
+                    if (query != null && query.length > Constants.MIN_SEARCH_LENGTH) {
                         viewModel.loadMovies(query)
                     }
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    if (newText != null && newText.length > 3) {
+                    if (newText != null && newText.length > Constants.MIN_SEARCH_LENGTH) {
                         viewModel.loadMovies(newText)
                     }
                     return false

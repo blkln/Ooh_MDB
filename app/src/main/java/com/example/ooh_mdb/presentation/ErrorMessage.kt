@@ -1,26 +1,18 @@
 package com.example.ooh_mdb.presentation
 
+import com.example.data.Constants
 import com.example.domain.model.ErrorEntity
 
 class ErrorMessage(private val error: ErrorEntity) {
 
     fun generate(): String {
         return when (error) {
-            ErrorEntity.Network -> "Network error occurred"
-            ErrorEntity.NotFound -> "Resource not found"
-            ErrorEntity.AccessDenied -> "Access denied"
-            ErrorEntity.ServiceUnavailable -> "Service is unavailable"
-            ErrorEntity.NoSearchResult -> "Movie not found!"
-            ErrorEntity.Unknown -> "Unknown error"
+            ErrorEntity.Network -> Constants.ERROR_NETWORK
+            ErrorEntity.NotFound -> Constants.ERROR_NOT_FOUND
+            ErrorEntity.AccessDenied ->Constants.ERROR_ACCESS_DENIED
+            ErrorEntity.ServiceUnavailable -> Constants.ERROR_SERVICE_UNAVAILABLE
+            ErrorEntity.NoSearchResult -> Constants.ERROR_NO_SEARCH_RESULTS
+            ErrorEntity.Unknown -> Constants.ERROR_UNKNOWN
         }
     }
 }
-
-/*
-<string name="network">Network error occurred</string>
-<string name="not_found">Resource not found</string>
-<string name="access_denied">Access denied</string>
-<string name="serviceu_navailable">Service is unavailable</string>
-<string name="unknown">Unknown error</string>
-<string name="network">Network error occurred</string>
-*/

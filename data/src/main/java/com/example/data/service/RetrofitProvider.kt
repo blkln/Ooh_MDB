@@ -40,7 +40,7 @@ class AuthorizationInterceptor: Interceptor {
 
         val newUrl = chain.request().url
             .newBuilder()
-            .addQueryParameter("apikey", Constants.omdbApiKey)
+            .addQueryParameter("apikey", Constants.OMDB_API_KEY)
             .build()
 
         val newRequest = chain.request()

@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">Ooh_MDb</string>
 
-    <string name="poster">Poster</string>
+    <string name="search_hint">Enter movie name</string>
 
+    <string name="poster">Poster</string>
     <string name="genre">Genre: %s</string>
     <string name="director">Director: %s</string>
     <string name="writer">Writer: %s</string>
     <string name="actors">Actors: %s</string>
 
+    <string name="network">Network error occurred</string>
+    <string name="not_found">Resource not found</string>
+    <string name="access_denied">Access denied</string>
+    <string name="service_unavailable">Service is unavailable</string>
+    <string name="no_search_results">Movie not found!</string>
+    <string name="unknown">Unknown error</string>
 </resources>

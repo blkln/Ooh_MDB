@@ -60,7 +60,8 @@ class DetailsFragment : Fragment() {
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+            val stringId = resources.getIdentifier(it, "string", activity?.packageName)
+            Toast.makeText(activity,  getString(stringId), Toast.LENGTH_SHORT).show()
         })
 
         val imdbID = arguments?.getString("imdbID")
