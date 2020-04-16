@@ -6,20 +6,16 @@
     tools:context=".presentation.details.DetailsFragment">
 
     <data>
-
         <variable
             name="detailsViewModel"
             type="com.example.ooh_mdb.presentation.details.DetailsViewModel" />
-
     </data>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:orientation="vertical">
-
 
         <ImageView
             android:id="@+id/poster"
@@ -41,21 +37,28 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-
             android:text="@{detailsViewModel.movie.title}"
             android:textSize="22sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:visibility="visible" />
 
         <ScrollView
+            android:id="@+id/bodyView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/genre"
@@ -66,7 +69,6 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-
                     android:text="@{@string/genre(detailsViewModel.movie.genre)}"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -80,7 +82,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-
                     android:text="@{@string/director(detailsViewModel.movie.director)}"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -94,7 +95,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-
                     android:text="@{@string/actors(detailsViewModel.movie.actors)}"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -108,7 +108,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-
                     android:text="@{@string/writer(detailsViewModel.movie.writer)}"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -121,13 +120,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-
                     android:text="@{detailsViewModel.movie.plot}"
                     android:textSize="18sp"
                     android:textStyle="normal" />
             </LinearLayout>
         </ScrollView>
-
 
     </LinearLayout>
 

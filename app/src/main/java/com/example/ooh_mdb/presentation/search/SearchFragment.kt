@@ -70,10 +70,13 @@ class SearchFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
         // Observing viewModel to update adapter
-        viewModel.movies.observe(viewLifecycleOwner, Observer { moviesAdapter.update(it ?: emptyList()) })
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.visibility = View.GONE
+            moviesAdapter.update(it ?: emptyList()) })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
             val stringId = resources.getIdentifier(it, "string", activity?.packageName)
+            binding.progressBar.visibility = View.GONE
             Toast.makeText(activity,  getString(stringId), Toast.LENGTH_SHORT).show()
         })
 
@@ -92,6 +95,7 @@ class SearchFragment : Fragment() {
             this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query != null && query.length > Constants.MIN_SEARCH_LENGTH) {
+                        binding.progressBar.visibility = View.VISIBLE
                         viewModel.loadMovies(query)
                     }
                     return false
@@ -99,6 +103,7 @@ class SearchFragment : Fragment() {
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     if (newText != null && newText.length > Constants.MIN_SEARCH_LENGTH) {
+                        binding.progressBar.visibility = View.VISIBLE
                         viewModel.loadMovies(newText)
                     }
                     return false

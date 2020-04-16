@@ -22,21 +22,7 @@ class DetailsViewModel: ViewModel() {
     private val movieRepository = MoviesRepositoryImpl(movieFetcher, errorHandler)
     private val getMovieDetails: GetMovieDetails = GetMovieDetails(movieRepository)
 
-    private val _movie = MutableLiveData<Movie>(
-        Movie(
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-        )
-    )
+    private val _movie = MutableLiveData<Movie>()
     val movie: LiveData<Movie>
     get() = _movie
 
