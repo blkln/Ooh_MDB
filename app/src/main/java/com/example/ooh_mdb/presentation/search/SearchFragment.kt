@@ -18,6 +18,7 @@ import com.example.data.Constants
 import com.example.domain.model.Movie
 import com.example.ooh_mdb.R
 import com.example.ooh_mdb.databinding.FragmentSearchBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 /**
@@ -25,7 +26,7 @@ import com.example.ooh_mdb.databinding.FragmentSearchBinding
  */
 class SearchFragment : Fragment() {
 
-    private lateinit var viewModel: SearchViewModel
+    private val viewModel by viewModel<SearchViewModel>()
     private lateinit var binding: FragmentSearchBinding
     private lateinit var moviesAdapter: ListAdapter
 
@@ -62,9 +63,6 @@ class SearchFragment : Fragment() {
                 "Clicked on item  ${view.id} at position $position"
             )
         }
-
-        // Get the viewModel
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
         // Specify the current activity as the lifecycle owner of the binding.
         binding.setLifecycleOwner(this)

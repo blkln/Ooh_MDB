@@ -14,13 +14,7 @@ import com.example.domain.model.Result
 import com.example.ooh_mdb.presentation.ErrorMessage
 import kotlinx.coroutines.launch
 
-class DetailsViewModel: ViewModel() {
-
-    private val serviceProvider = RetrofitProvider().create()
-    private val movieFetcher = MovieFetcher(serviceProvider)
-    private val errorHandler = ErrorHandlerImpl()
-    private val movieRepository = MoviesRepositoryImpl(movieFetcher, errorHandler)
-    private val getMovieDetails: GetMovieDetails = GetMovieDetails(movieRepository)
+class DetailsViewModel(private val getMovieDetails: GetMovieDetails): ViewModel() {
 
     private val _movie = MutableLiveData<Movie>()
     val movie: LiveData<Movie>

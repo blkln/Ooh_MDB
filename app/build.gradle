@@ -62,4 +62,8 @@ dependencies {
     //  Modules
     implementation project(':data')
     implementation project(':domain')
+
+    //  Koin for Android
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
+
 }

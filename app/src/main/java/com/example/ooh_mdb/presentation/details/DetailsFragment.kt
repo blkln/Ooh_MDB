@@ -13,13 +13,14 @@ import com.example.data.Constants
 import com.example.ooh_mdb.R
 import com.example.ooh_mdb.databinding.FragmentDetailsBinding
 import com.squareup.picasso.Picasso
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * A movie details ragment.
  */
 class DetailsFragment : Fragment() {
 
-    private lateinit var viewModel: DetailsViewModel
+    private val viewModel by viewModel<DetailsViewModel>()
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
@@ -39,9 +40,6 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Get the viewModel
-        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
 
         // Set the viewModel for dataBinding
         binding.detailsViewModel = viewModel
